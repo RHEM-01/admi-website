@@ -4,10 +4,17 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/web/Navbar";
+import { ScrollTrigger, SplitText } from "gsap/all";
+import gsap from "gsap";
 
-const robotoHeading = Roboto({subsets:['latin'],variable:'--font-heading'});
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const robotoHeading = Roboto({
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +39,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable, robotoHeading.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        inter.variable,
+        robotoHeading.variable,
+      )}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

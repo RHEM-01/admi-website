@@ -1,14 +1,37 @@
 "use client"
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react';
+import { SplitText } from "gsap/all";
+
 
 export default function Home() {
-  const tl = gsap.timeline({});
   useGSAP(() => {
-    tl.to("#chuch-name", {
-      opacity: 1,
-      ease: "power1.inOut",
-      duration: 2,
+    const nameSplit = new SplitText("#church-name", { type: "chars, words" });
+
+    gsap.from("#welcome-text", {
+      yPercent: 100,
+      opacity: 0,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.03,
+      delay: 1,
+    });
+
+    gsap.from(nameSplit.chars, {
+      yPercent: 100,
+      opacity: 0,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.05,
+    });
+
+    gsap.from("#moto", {
+      yPercent: 100,
+      opacity: 0,
+      duration: 1.8,
+      ease: "expo.out",
+      stagger: 0.1,
+      delay: 1,
     });
   }, []);
 
@@ -23,11 +46,11 @@ export default function Home() {
           {/* radial glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/30 rounded-full blur-[100px] -z-10 pointer-events-none" />
 
-          <h2 className="text-base text-white/90 font-semibold font-heading drop-shadow-sm">Welcome to</h2>
-          <h1 id="church-name" className="opacity-0 text-4xl md:text-6xl font-bold font-heading tracking-tight text-white drop-shadow-lg">
+          <h2 id="welcome-text" className="text-white/90 font-semibold font-heading drop-shadow-sm text-2xl">Welcome to</h2>
+          <h1 id="church-name" className="text-4xl md:text-7xl font-bold font-heading tracking-tight text-white drop-shadow-lg">
             Arrow of Deliverance Ministries Int&apos;l
           </h1>
-          <p className="text-lg text-white/80 leading-relaxed mt-2 drop-shadow-md">
+          <p id="moto" className="text-lg text-white/80 leading-relaxed mt-2 drop-shadow-md">
             (A Guiding Light to the Nation)
           </p>
         </div>
